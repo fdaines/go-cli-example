@@ -11,13 +11,18 @@ var summationCmd = &cobra.Command{
 	Short: "Returns the summation of desired number",
 	Long: `Returns the summation of desired number
 Usage:
-        go-cli-example summation 45`,
+        go-cli-example summation 45
+		go-cli-example summation 45 --from 10
+		go-cli-example summation 45 -f 10`,
 	Args: cobra.ExactArgs(1),
 	Run: summation,
 }
 
+var from int
+
 func init() {
 	rootCmd.AddCommand(summationCmd)
+	summationCmd.Flags().IntVarP(&from, "from", "f", 1, "Define the init value for the summation.")
 }
 
 func summation(cmd *cobra.Command, args []string) {
@@ -28,7 +33,7 @@ func summation(cmd *cobra.Command, args []string) {
 	}
 
 	result := 0
-	for i := number; i > 0; i-- {
+	for i := number; i >= from; i-- {
 		result += i
 	}
 	fmt.Printf("Summation of %d is: %d\n", number, result)
