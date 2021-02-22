@@ -7,13 +7,11 @@ import (
 )
 
 var summationCmd = &cobra.Command{
-	Use:   "summation number",
-	Short: "Returns the summation of desired number",
-	Long: `Returns the summation of desired number
-Usage:
-        go-cli-example summation 45
-		go-cli-example summation 45 --from 10
-		go-cli-example summation 45 -f 10`,
+	Use:   "summation n",
+	Short: "Returns the summation of desired number 'n'",
+	Long: `Returns the summation of desired number 'n'.
+Formula:
+  Sum of 'i', from i='from' to 'n'`,
 	Args: cobra.ExactArgs(1),
 	Run: summation,
 }
